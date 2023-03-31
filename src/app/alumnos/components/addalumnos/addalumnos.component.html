@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-12">
+        <div class="container">
+            <div class="card-body">
+                <h5 class="card-title">{{titulo}}</h5>
+                <!-- Se registran los datos del alumno y se mapean con ngModel al
+                     model o sea la clase alumno.ts -->
+                <form>
+                    <div class="form-group row">
+                        <label for="nombres" class="col-form-label col-sm-2">Nombres</label>
+                        <div class="col-sm-6">
+                            <!-- Vamos a mapear cada campo a la clase model Alumno que esta
+                                 definida en el ts-->
+                            <input type="text" class="form-control" name="nombres" [(ngModel)]="alumno.nombre">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="apellidos" class="col-form-label col-sm-2">Apellidos</label>
+                        <div class="col-sm-6">
+                            <!-- Vamos a mapear cada campo a la clase -->
+                            <input type="text" class="form-control" name="apellidos" [(ngModel)]="alumno.apellido">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+
+                        <label for="calle" class="col-form-label col-sm-2">Calle</label>                        
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="calle" [(ngModel)]="domicilio.calle">
+                        </div>
+
+                        <label for="calle" class="col-form-label col-sm-2">Nro. Calle</label>                        
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="nrocalle" [(ngModel)]="domicilio.noCalle">
+                        </div>
+
+                        <label for="pais" class="col-form-label col-sm-2">Pais</label>                        
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="pais" [(ngModel)]="domicilio.pais">
+                        </div>                                                  
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="contacto" class="col-form-label col-sm-2">Email</label>                
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="email" [(ngModel)]="contacto.email">
+                        </div>
+                        <label for="telefono" class="col-form-label col-sm-2">Teléfono</label>                                
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="email" [(ngModel)]="contacto.telefono">
+                        </div>                           
+                        
+                        <!--<div class="col-sm-6">
+                            <input type="text" class="form-control" name="contacto" [(ngModel)]="alumno.contacto">
+                        </div>-->
+                    </div>
+
+                    <!-- Si no es valido el !estudiante.id haga create else o sea sino significa que es
+                         valido vaya al ste template que lo vamos a llamar elseBlock y por eso
+                         el template se llama #elseBlock -->
+                    <button class="btn btn-success" role="button" (click)="create()">Registrar alumno</button>
+                    <button class="btn btn-success" role="button" (click)="create()"
+                        *ngIf="!alumno.idAlumno else elseBlock">Registrar</button>
+
+                    <!-- Para que se muestre el boton registrar o actualizar segun el usuario
+                         haya digitado -->
+                    <ng-template #elseBlock>
+                        <button class="btn btn-success" role="button" (click)="update()">Actualizar</button>
+                    </ng-template>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

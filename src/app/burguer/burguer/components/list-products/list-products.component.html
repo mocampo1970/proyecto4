@@ -1,0 +1,32 @@
+<!-- header -->
+<app-headerburguer></app-headerburguer>     
+
+<div class="row" id="products">
+    <div class="col-12">
+        <!-- Si NO tenemos productos-->
+        <div class="row" *ngIf="listProducts.length === 0">
+            <div class="col-12 text-center">
+                <span>{{'label.no.products | translate'}}</span>
+            </div>
+        </div>
+        
+        <!-- Porque aqui vamos a tener todos los productos y tambien es que creamos esa
+                 clase product y adicional cuando haya productos y le den click llame el metodo
+                 selectProduct y le envie el parametro product y aparezca ese producto 
+                 primero hace el click hace lo que tiene que hacer y luego 
+                 hace el router -->        
+        <!-- Si tenemos productos la imagen salia muy grande pero le coloque en el list-products.css una 
+             definicion para la img-medium -->        
+        <div class="row" *ngIf="listProducts.length > 0">
+            <div class="col-md-4 col-sm-6 col-12 product" (click)="selectProduct(product)" [routerLink]="['/product']" *ngFor="let product of listProducts">
+              <img class="img-medium" [src]="product.img"/>
+              <span class="d-block">{{product.name | translate}}</span>
+              <span class="d-block">{{product.price}} € </span>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<app-footerburguer></app-footerburguer>            

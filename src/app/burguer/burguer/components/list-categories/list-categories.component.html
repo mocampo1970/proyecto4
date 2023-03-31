@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-12">
+        <!-- Si el largo del arreglo arreglo es = 0 es porque NO hay datos -->        
+        <div class="row" *ngIf="listCategories.length === 0">
+            <div class="col-12 text-center">
+                <span>{{'label.no.categories' | translate}}</span>
+            </div>
+        </div>
+     
+        <!-- Si el largo del arreglo es > 0 es porque hay datos -->
+        <div class="row" *ngIf="listCategories.length > 0">
+            <!-- Porque aqui vamos a tener todos los productos y tambien es que creamos esa
+                 clase category y adicional cuando haya categorias y le den click llame el metodo
+                 selectCategory y le envie el parametro cat y aparezcan todos los productos 
+                 de esa categoria, primero hace el click hace lo que tiene que hacer y luego 
+                 hace el router -->
+
+                 <!-- NOTA: no me abria el list-products aqui en el ste routerLink
+                            porque en el app.routing estaba listproducts y debe ser list-products -->
+            <div class="col-md-4 col-sm-6 col-12 category" (click)="selectCategory(cat)" [routerLink]="['/list-products']" routerLinkActive="active"  *ngFor="let cat of listCategories">
+                <!-- esta clase img-medium esta definida en el list-categories.css -->
+                <img class="img-medium" [src]="cat.img"/>
+                <span class="d-block">{{cat.name | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>

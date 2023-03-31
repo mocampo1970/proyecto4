@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>{{titulo}}</h1>
+    </div>
+
+    <!-- container agrupar en forma de cuadro -->
+    <div class="container">
+        <!-- Me abre la ventana addestudiante, recordar que el nombre es como se llama
+             el selector de AddestudianteComponent o en el app.routing -->
+        <button class="btn btn-info" type="button" [routerLink]="['/addalumnos']">Nuevo alumno</button>
+
+        <input type="text" class="form-control" name="filteralumno" [placeholder]="'label.3.characters' | translate" 
+        [(ngModel)]="filterAlumno">
+
+        
+        <table class="table table-success table-striped">
+            <!-- Titulos -->
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Domicilio</th>
+                <th scope="col">Contacto</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>                           
+                </tr>
+            </thead>
+            <!-- Detalle aqui con ese filter permite buscar por nombre -->
+            <tbody>
+                <tr *ngFor="let alumno of alumnos | filter:filterAlumno">
+                    <!-- debe tener el mismo nombre del model alumno.ts en este caso idAlumno porque
+                         lo tenia id y no traia nada y asi mismo se llama en el backend en el modelo que 
+                         se llama alumno.java lo mismo abajo cuando se va a editar tenia id y debe 
+                         ser idAlumno-->
+                    <th scope="row">{{alumno.idAlumno}}</th>
+                    <td>{{alumno.nombre}}</td>
+                    <td>{{alumno.apellido}}</td>
+                    <td>{{alumno.domicilio.calle}} - {{alumno.domicilio.noCalle}} - {{alumno.domicilio.pais}}</td>
+                    <td>{{alumno.contacto.telefono}} - {{alumno.contacto.email}}</td>
+                    <!-- Cuando presione Editar en esta vista hace routerLink a addestudiante con el parametro 
+                        estudiante.id y alla en addestudiante abre y ejecutar en ngOnit que posteriormente
+                        hace el cargar que es el metodo que carga datos a esa pantalla -->
+                    <td> 
+                        <!-- Debe tener alumno.idAlumno porque lo tenia id y no abria nada 
+                             debe ser el mismo que arriba y el mismo que en el backend en el modelo
+                             que se llama alumno.java -->
+                        <button type="button" name="button" class="btn btn-primary" 
+                            [routerLink]="['/addalumnos/', alumno.idAlumno]">Editar
+                        </button>
+                    </td>   
+                        
+                    <!-- Este Td lo ingresa bien en la tabla -->    
+                    <td>
+                        <!-- En el borrar se le pasa el objeto estudiante(model) que esta definido en este component.ts
+                            por eso arriba se utiliza -->
+                        <button type="button" name="buttoneliminar" class="btn btn-danger" (click)="delete(alumno)">
+                            Eliminar
+                        </button> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>  

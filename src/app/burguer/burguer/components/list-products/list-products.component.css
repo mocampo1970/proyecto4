@@ -1,0 +1,13 @@
+/* products es el nombre del id y ese se define en el html*/
+#products .product{
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 36px;
+}
+
+/* para que tome la imagen media */
+.img-medium {
+    width: 300px;
+    height: 300px;
+}

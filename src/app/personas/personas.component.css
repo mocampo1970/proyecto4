@@ -1,0 +1,14 @@
+/* Con esto cambia de color el offcanvas, el id del persona.component.html es el que se toma aqui
+   offcanvasPersona para que coloque las propiedades que quiera cambiar en este caso el background */
+#offcanvasPersona{
+    background: cornflowerblue;
+}
+
+#offcanvasPersona{
+    list-style: armenian;
+}
+
+#idtelefono{
+    width: 450px;
+    height: 200px;
+}

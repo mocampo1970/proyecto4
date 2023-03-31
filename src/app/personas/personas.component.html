@@ -1,0 +1,192 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>{{titulo}}</h1>
+    </div>
+
+    <!-- container agrupar en forma de cuadro -->
+    <div class="container mt-3">
+        <!-- Boton en la parte superior de nueva persona, abre offcanvasPersona que esta enseguida abajo
+             abre con campos vacios y el ngModel asocia los campos al model  -->
+        <!--<button type="button" class="btn btn-primary" [routerLink]="['/addpersona']" routerLinkActive="router-link-active" >Nueva Persona</button>-->
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasPersona" role="button" aria-controls="offcanvasPersona">
+            Nueva Persona
+        </a>
+
+        <!-- offcanvasPersona que se abre cuando se presiona nueva persona -->  
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasPersona" aria-labelledby="offcanvasPersonaLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-center" id="offcanvasPersonaLabel" >Registro de Persona</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div>
+              <!-- Campos de la offcanvas (ventana modal para agregar una persona) --> 
+              <form >
+                <!-- Nombres-->
+                <div class="form-group row">
+                    <label for="nombres" class="col-form-label col-sm-2">Nombres</label>
+                    <div class="col-sm-6">
+                        <!-- Vamos a mapear cada campo a la clase model Estudiante que esta
+                              definida en el ts-->
+                        <input type="text" style="width: 300px;" class="form-control" name="nombres" [(ngModel)]="persona.nombre">
+                    </div>
+                </div>
+             
+                <!-- Apellidos -->
+                <div class="form-group row">
+                  <label for="apellidos" class="col-form-label col-sm-2">Apellidos</label>
+                  <div class="col-sm-6">
+                      <!-- Vamos a mapear cada campo a la clase -->
+                      <input type="text" class="form-control" style="width: 300px;" name="apellidos" [(ngModel)]="persona.apellido">
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group row">
+                  <label for="email" class="col-form-label col-sm-2">Email</label>
+                  <div class="col-sm-6">
+                      <!-- Vamos a mapear cada campo a la clase -->
+                      <input type="text" class="form-control" style="width: 300px;" name="email" [(ngModel)]="persona.email">
+                  </div>
+                </div>                
+
+                <!-- Telefono-->
+                <div class="form-group row" >
+                  <label for="telefono" class="col-form-label col-sm-2">Telefono</label>
+                  <div class="col-sm-6">
+                      <!-- Vamos a mapear cada campo a la clase -->
+                      <input type="text" class="form-control" name="telefono" [(ngModel)]="persona.telefono">
+                  </div>
+                </div>  
+
+                <!-- Invoca el create, graba el registro y al final con data-bs-dismiss cierra el offCanvas -->
+                <button class="btn btn-secondary" type="button" id="Button" (click)="create()" data-bs-dismiss="offcanvas">
+                  Grabar
+                </button>
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+        <!-- Hasta aqui va el offcanvas de nueva persona-->  
+
+        <div class="row">      
+          <table class="table table-success table-striped">
+            <!-- Titulos -->
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>  
+                    <th scope="col">Teléfono</th>   
+                </tr>
+            </thead>
+            <!-- Detalle, recuperamos cada dato de la persona -->            
+            <tbody>
+                <tr *ngFor="let persona of personas">
+                  <td scope="row">{{persona.id_persona}}</td>
+                  <td>{{persona.nombre}}</td>
+                  <td>{{persona.apellido}}</td>
+                  <td>{{persona.email}}</td>
+                  <td>{{persona.telefono}}</td>                       
+                  <td>
+                      <!-- offcanvas que se abre cuando se presiona editar persona, invoca metodo editar(persona)
+                            y envia la persona a modificar -->  
+                      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditarPersona" aria-controls="offcanvasEditarPersona"
+                      (click)="editar(persona)">
+                      <!-- Coloca las flechas antes del boton -->
+                        <i class="fas fa-angle-double-right"></i> Editar
+                      </button>
+            
+                      <!-- offcanvas que se abre cuando se presiona editar persona -->  
+                      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasEditarPersona" aria-labelledby="offcanvasEditarPersonaLabel">
+                        <!-- header del canvas -->                              
+                        <div class="offcanvas-header">
+                          <h5 class="offcanvas-title text-center" id="offcanvasPersonaLabel" >Editar Persona</h5>
+                          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+
+                        <!-- body del canvas -->                                  
+                        <div class="offcanvas-body">
+                          <div>
+                            <!-- Campos de la offcanvas (ventana modal para agregar una persona) --> 
+                            <form >
+
+                              <!-- Id-->
+                              <div class="form-group row">
+                                <label for="id" class="col-form-label col-sm-2">Id</label>
+                                <div class="col-sm-6">
+                                    <!-- Vamos a mapear cada campo a la clase model persona que esta
+                                          definida en el ts-->
+                                    <input id="id" type="text" style="width: 300px;" class="form-control" name="id" [(ngModel)]="id" readonly>                            
+                                </div>
+                              </div>                                                                                                
+
+                              <!-- Nombres-->
+                              <div class="form-group row">
+                                  <label for="nombres" class="col-form-label col-sm-2">Nombres</label>
+                                  <div class="col-sm-6">
+                                      <!-- Vamos a mapear cada campo a la clase model Estudiante que esta
+                                            definida en el ts-->
+                                      <input id="nombres" type="text" style="width: 300px;" class="form-control" name="nombres" [(ngModel)]="nombre">                                          
+                                  </div>
+                              </div>
+                          
+                              <!-- Apellidos -->
+                              <div class="form-group row">
+                                <label for="apellidos" class="col-form-label col-sm-2">Apellidos</label>
+                                <div class="col-sm-6">
+                                    <!-- Vamos a mapear cada campo a la clase -->
+                                    <input type="text" class="form-control" style="width: 300px;" name="apellidos" [(ngModel)]="apellido">
+                                </div>
+                              </div>
+              
+                              <!-- Email -->
+                              <div class="form-group row">
+                                <label for="email" class="col-form-label col-sm-2">Email</label>
+                                <div class="col-sm-6">
+                                    <!-- Vamos a mapear cada campo a la clase -->
+                                    <input type="text" class="form-control" style="width: 300px;" name="email" [(ngModel)]=email>
+                                </div>
+                              </div>                
+              
+                              <!-- Telefono-->
+                              <div class="form-group row" >
+                                <label for="telefono" class="col-form-label col-sm-2">Telefono</label>
+                                <div class="col-sm-6">
+                                    <!-- Vamos a mapear cada campo a la clase -->
+                                    <input type="text" id="telefono" class="form-control" name="telefono" [(ngModel)]="telefono">
+                                </div>
+                              </div>  
+              
+                              <!-- Invoca el create, graba el registro y al final con data-bs-dismiss cierra el offCanvas -->
+                              <button class="btn btn-secondary" type="button" id="Button" (click)="update()" data-bs-dismiss="offcanvas">
+                                Grabar
+                              </button>
+              
+                            </form>
+                          </div>
+              
+                        </div>
+                      </div>
+                      <!-- Hasta aqui va el offcanvas de editar persona-->
+
+
+                  </td> 
+                  <td> 
+                      <!-- Eliminar -->
+                      <button type="button" name="buttoneliminar" class="btn btn-danger" (click)="delete(persona)">
+                      <!-- Para usar fontawesome me inscribi en la pagina y copie en el 
+                            index.html la clave que da fontawesome-->
+                      <i class="fas fa-angle-double-right"></i> Eliminar
+                      </button>
+                  </td>  
+
+              </tr>
+            </tbody>        
+          </table>
+        </div>            
+    </div>    
+</div>

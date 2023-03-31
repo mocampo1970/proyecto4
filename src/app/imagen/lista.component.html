@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-4" *ngFor="let imagen of imagenes; index as i">
+    <!-- este imagenes | json es para mirar como viene el json pero se puede ocultar y se ve la pantalla limpia -->
+    {{imagenes | json}}
+    <!-- Animated-->
+    <div class="card mb-3 animated zoomIn" style="max-width: 18rem;">
+      <div class="card-header">{{imagen.name}}</div>
+      <div class="card-body">
+        <!-- B es negrita-->
+        <h5 class="card-title"><b>ID: </b>{{imagen.imagenId}}</h5>
+        <h6 class="card-subtitle text-muted">subtitulo</h6>
+        <p class="card-text">Some quick</p>
+      </div>
+
+      <div class="card-body text-center">
+        <img style="height: 200px; width: 100%; display: block;" src="{{imagen.imagenUrl}}" alt="Card image cap">
+      </div>
+
+      <div class="card-body">
+        <p class="card-text"></p>
+      </div>
+
+      <div class="card-body d-flex justify-content-between">
+        <button class="btn btn-outline-primary" (click)="abrirModal()"><i class="fa-regular fa-eye"></i> Ver</button>
+        <button class="btn btn-outline-danger" (click)="borrar(imagen.id)"><i class="fa-regular fa-trash-can"></i> Borrar</button>
+      </div>
+      
+      <div class="card-footer text-center">
+        &copy; marca personal
+      </div>
+
+    </div>
+ 
+
+  </div>  <!-- cierra col-md-4-->
+</div>

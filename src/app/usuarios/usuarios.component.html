@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>{{titulo}}</h1>
+    </div>
+
+    <!-- container agrupar en forma de cuadro -->
+    <div class="container mt-3">
+
+        <div class="row">      
+            <table class="table table-success table-striped">
+                <!-- Titulos -->
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col">Id</th>
+                        <th scope="col">Apellidos - Nombres</th>
+                        <th scope="col">Email</th>  
+                        <th scope="col">Password</th>  
+                        <th scope="col">Prioridad</th>   
+                        <th scope="col">Usuario</th>                                                    
+                    </tr>
+                </thead>
+                <!-- Detalle, recuperamos cada dato de la persona -->            
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td>{{usuario.id}}</td>
+                        <td scope="row">{{usuario.apellidos + ' ' + usuario.nombres}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.password}}</td>
+                        <td>{{usuario.prioridad}}</td>
+                        <td>{{usuario.usuario}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" (click)="editar(usuario)">
+                            <!-- Coloca las flechas antes del boton -->
+                            <i class="fa fa-w fa-edit"></i>                                
+                                Editar
+                            </button>
+
+                            <button type="button" class="btn btn-outline-danger">
+                                <!-- Coloca las flechas antes del boton -->
+                                <i class="fa fa-w fa-eraser"></i>                                
+                                Eliminar
+                            </button>              
+                        </td>
+                    </tr>                                                   
+                </tbody>
+            </table>
+        </div>
+
+    </div> 
+    
+</div>    
+
+  
+<!-- Modal -->
+<!-- Templates para los modales, vamos a utilizar un ng-template que es una plantilla
+    este #modal_success es como el nombre del modal -->
+<!-- Templates para los modales -->
+<ng-template #modal_success let-c="close" let-d="dismiss" let-modal>
+    <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{nombres + ' ' + apellidos}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <!-- Lo que va en el ngModel son los campos que se asignan en editar del ts-->
+        <div class="form-group row">
+            <label for="id" class="col-form-label col-sm-2">Id</label>            
+            <input id="id" type="text" style="width: 300px;" class="form-control" name="id" [(ngModel)]="id" readonly>
+        </div>            
+        <div class="form-group row">
+            <label for="nombres" class="col-form-label col-sm-2">Nombres</label>
+            <input id="nombres" type="text" style="width: 300px;" class="form-control" name="nombres" [(ngModel)]="nombres">
+        </div>
+        <div class="form-group row">
+            <label for="apellidos" class="col-form-label col-sm-2">Apellidos</label>                 
+            <input id="apellidos" type="text" style="width: 300px;" class="form-control" name="apellidos" [(ngModel)]="apellidos">
+        </div>            
+        <div class="form-group row">
+            <label for="email" class="col-form-label col-sm-2">Email</label>                           
+            <input id="email" type="text" style="width: 300px;" class="form-control" name="email" [(ngModel)]="email">
+        </div>            
+        <div class="form-group row">
+            <label for="password" class="col-form-label col-sm-2">Password</label>        
+            <input id="password" type="text" style="width: 300px;" class="form-control" name="password" [(ngModel)]="password">
+        </div>
+        <div class="form-group row">
+            <label for="prioridad" class="col-form-label col-sm-2">Prioridad</label> 
+            <input id="prioridad" type="text" style="width: 300px;" class="form-control" name="prioridad" [(ngModel)]="prioridad">
+        </div>            
+        <div class="form-group row">
+            <label for="usuario" class="col-form-label col-sm-2">Usuario</label>                 
+            <input id="usuariop" type="text" style="width: 300px;" class="form-control" name="usuariop" [(ngModel)]="usuariop">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!-- Actualiza pero no cierra el modal ????????-->
+        <!-- Mire en footerBurguer como trabaja el modal alla que se abre el del pedido y luego abre otro
+             y se van cerrando
+             NOTA: en este caso puntual vamos a utilizar el modal.close, modal es como se 
+             coloca en el ng-template y cuando se cierre envia parametro de yes y alla en el ts
+             se recibe -->
+        <!--<button type="button" class="btn btn-primary" (click)=update() data-dismiss="modal">Guardar</button>-->
+        <button type="button" class="btn btn-primary" (click)="modal.close('yes')" data-dismiss="modal">Guardar</button>        
+                
+        <!--<button type="button" class="btn btn-secondary" (click)="c('Save click')">Cerrar</button>-->
+        <button type="button" class="btn btn-secondary" (click)="modal.close('no')">Cerrar</button>        
+        
+    </div>
+</ng-template> 

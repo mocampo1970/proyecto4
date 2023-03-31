@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+html, body{
+    height: 100%;
+}
+
+html body{
+    background: #c2c2c2;
+}
+
+html body .p-calendar {
+    display: block;
+}
+
+html body .p-calendar .p-inputtext{
+    width: 100%;
+}
+
+html body .p-datepicker table th{
+    text-align: center;
+}
+
+.spinner{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Este que sigue se va a utilizar en footerburguer.component.ts y es para que el modal
+   sea grande y solo afecte a ese por eso se hace desde aqui y alla cuando se abre
+   se envie un parametro. */ 
+.my-modal-dialog .modal-dialog{
+    max-width: 95%;
+}
+
+/* Este que sigue se va a utilizar en footerburguer.component.ts y es para que el modal
+   cuando no tenga productos el pedido salga en gris y con letra grande */ 
+.my-modal-dialog .no-elements{
+    font-size: 24px;
+    color: #999;
+}   
+
+/* Modal que se usa en footerBurguer.component.html para pagos de paypal */
+.my-modal-dialog .type-payment{
+    display: inline-block;
+    border: 1px solid#000;
+    border-radius: 4px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+/* Modal que se usa en footerBurguer.component.html para pagos de paypal y este pedazo es para el
+   icono  */
+.my-modal-dialog .type-payment i{
+    font-size: 80px;
+}
+
+/* Modal que se usa en footerBurguer.component.html para pagos de paypal y este pedazo es para el
+   icono, lo de margin en 0 y luego margin top en 15 es como resetear el margen y colocarlo en 15 */
+.my-modal-dialog .type-payment p{
+    margin: 0px;
+    margin-top: 15px;
+    font-size: 24px;
+}

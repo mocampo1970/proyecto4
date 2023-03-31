@@ -1,0 +1,26 @@
+<div class="row" id="header">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-md-10 col-12 text-light">
+        <!-- translate es como se llama el pipe que a su vez inyecta el servicio y traduce-->
+        <h1>{{'label.app' | translate}}</h1>
+      </div>
+      <div class="col-md-2 col-12 login-button">
+
+        <!-- Boton login para que no se vean los 2 botones vamos a colocar un ngIf, para eso en el 
+             header.componentent.ts se inyecta el AuthService, este primero cuando este autenticado no
+             se muestra -->
+        <button type="button" class="btn btn-block btn-primary" (click)="openLogin()">
+          {{'label.login' | translate}}
+        </button>
+
+        <!-- Boton logout solo se muestra cuando este logeado y quiera deslogearse -->
+        <button type="button" class="btn btn-block btn-primary" (click)="logout()">
+          {{'label.logout' | translate}}
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</div>

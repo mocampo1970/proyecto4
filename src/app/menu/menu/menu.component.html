@@ -1,0 +1,53 @@
+<!-- Menu App. Este menu es llamado del app.component -->
+<!-- https://www.youtube.com/watch?v=9hQ_9UIqEgs&list=PLPl81lqbj-4JaLibWSbTVrYTyHDadppKq&index=18 -->
+<!-- Aqui el routerLink debe hacerse con [] tal como esta aqui y adicional en la documentacion
+     de angular se explica que para lista estatica se usa este 
+     https://angular.io/api/router/RouterLink#description-->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" routerLink="">Mi app</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!-- aqui se coloca
+                como se llama en el selector: 'app-login', se coloca login sin el app, no se coloca 
+                el nombre de la clase y por supuesto debe estar matriculada en el app-routing.module -->                
+                
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/booking">Login</a>
+            </li>        
+            <!-- Booking -->
+            <li class="nav-item">
+                <!--<a class="nav-link" routerLink="/booking">Booking</a> -->
+                <a class="nav-link" routerLink="/add-booking">Booking</a>
+            <!-- Burguer -->
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/burguer">Burguer</a>
+            <!-- Estudiantes -->
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/estudiantes">Estudiantes</a>
+            <!-- Personas -->
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/personas">Personas</a>
+            <!-- Usuarios -->
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/usuarios">Usuarios</a>
+            <!-- Proveedores -->
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/proveedores">Proveedores</a>
+            <!-- Cloudinary -->
+            <li class="nav-item">
+                <!-- El primer link apuntando a nueva es para cuando va a subir una nueva y 
+                     el segundo link a lista es para consultar -->
+                <!--<a class="nav-link" routerLink="/nueva">Cloudinary</a>-->
+                <a class="nav-link" routerLink="/lista">Cloudinary</a>
+            <!-- Se coloca el nombre del app-selector del ts que deseemos llamar -->    
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/coches">Consulta de autos</a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/proveedores">Pedidos</a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/alumnos">AlumnosClaseHibernateJPA</a>                
+        </ul> 
+    </div>
+</nav>
+    
+    

@@ -1,0 +1,35 @@
+<!-- -->
+<div class="spinner-border text-primary">Subiendo imagen</div>
+
+<!-- enctype="multipart/form-data Esto es porque vamos a utilizar archivos -->
+<form (ngSubmit)="onUpLoad()" novalidate enctype="multipart/form-data">
+    <div class="input-group mb-3">
+        <!-- Le colocamos #imagenInputFile para identificarlo y adicional creamos un metodo onFileChange
+             le pasamos como parametro un $event, ese imagenInputFile lo vamos a utilizar como
+             viewChild, el type="file" es el que me abre el explorador de windows.-->
+        <input type="file" class="form-control" id="imagen" #imagenInputFile (change)="onFileChange($event)"
+            accept="image/png, image/jepg, image/gif">
+        <label class="input-group-text" for="imagen">Elige una imagen..</label>
+    </div>
+    <!-- vble imagen-->
+    <div *ngIf="imagen" class="mt-5">
+        <h5> Vista previa:</h5>
+        <div>
+            <img class="image-thumbnail" style="max-width: 100px" [src]="imagenMin">
+        </div>
+    </div>
+    <!-- spinner colocado por mi-->
+    <div class="spinner-grow text-success" role="status">
+        <span class="sr-only" name="spinner">Loading...</span>
+      </div>
+    <!-- Botones, este my-3 es para que se separe 3 -->
+    <div class="form-group d-flex justify-content-between my-3" >
+        <!-- Si no existe la imagen se deshabilita, y el reset cuando le den click invoca
+             metodo de reset. las imagenes van fuera del button al lado del texto-->
+        <button type="submit" class="btn btn-outline-success" [disabled]="!imagen"> <i
+                class="fa-solid fa-upload"></i>Subir</button>
+        <button class="btn btn-outline-danger" [disabled]="!imagen" (click)="reset()"> <i
+                class="fa-regular fa-arrows-rotate"></i> Reset</button>
+    </div>
+
+</form>

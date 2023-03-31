@@ -1,0 +1,59 @@
+<!-- Modal este pedazo lo trajimos digitando b4-modal-default le quitamos una gran cantidad y dejamos este 
+     pero solo la maqueta. este click de aqui es entre parentesis lo deje sin parentesis y no cerraba
+     el modal  -->
+<div class="modal-header">
+    <h5 class="modal-title">{{'label.login' | translate}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+</div>
+<div class="modal-body">
+    <!-- Se digita div.row y ctrl+espacio y trae la maqueta del class row-->
+    <!-- Se digita div.col-12 y ctrl+espacio y trae la maqueta del class col-12-->    
+    <div class="row">
+        <div class="col-12">
+
+            <!-- Alert de success Mensaje de exito este sale cuando se haya
+                 logiado bien, con el if que yo lo hice me va a aparecer el mensaje -->            
+            <div class="alert alert-primary" role="alert" *ngIf="showLoginSuccess">
+                <strong>{{'label.login.success' | translate}}</strong>
+            </div>
+
+            <!-- Mensaje de error, este sale cuando se haya logeado mal 
+                 con el if que yo lo hice me va a aparecer el mensaje-->   
+            <div class="alert alert-danger" role="alert" *ngIf="showLoginError">
+                <strong>{{'label.login.error' | translate}}</strong>
+            </div>            
+
+            <!-- Usamos formulario reactivo -->            
+            <form [formGroup]="formLogin" (ngSubmit)="checkLogin()">
+
+                <!-- Usuario -->                
+                <div class="row form-group">
+                    <div class="col-12">
+                        <label for="user">{{'label.user' | translate}}</label>
+                        <input type="text" formControlName="user" class="form-control" id="user"/>
+                    </div>
+                </div>
+
+                <!-- pass con type password se mustran ** -->
+                <div class="row form-group">
+                    <div class="col-12">
+                        <label for="pass">{{'label.pass' | translate}}</label>
+                        <input type="password" formControlName="pass" class="form-control" id="pass"/>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <!-- button se presiona but y el complementa y uno ya selecciona el submit -->                  
+                <div class="row form-group">
+                    <div class="col-12">
+                    <button [disabled]="formLogin.invalid" type="submit" class="btn btn-block btn-primary">{{'label.login' | translate}}</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+ 

@@ -1,0 +1,95 @@
+#appburguer .headerburguer{
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 120px;
+}
+
+#appburguer .footerburguer{
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    height: 80px;
+}
+
+
+
+@font-face {
+    font-family: 'inasinibc';
+    src: url('../../../assets/font/GreasySpoonNF.ttf') format('truetype');
+}
+
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
+
+html body {
+    font-family: 'insanibc';
+    margin-top: 120px;
+    margin-bottom: 85px;
+}
+
+
+.spinner{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Estilos para las imagenes */
+
+.img-small{
+    width: 150px;
+    height: 150px;
+}
+
+.img-medium {
+    width: 300px;
+    height: 300px;
+}
+
+.img-large{
+    width: 500px;
+    height: 500px;
+}
+
+/* Estilos para los modales */
+
+.my-modal-dialog .modal-dialog{
+    max-width: 95%;
+}
+
+.my-modal-dialog .no-elements{
+    font-size: 24px;
+    color: #999;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+#app .header{
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 120px;
+}
+
+#app .footer{
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    height: 85px;
+}
+
+/* esto es para que coja todo el ancho lo coloque tambien en el list-component.css y ese calculo es para eso*/
+#app .content{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 205px);
+}

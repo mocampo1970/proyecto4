@@ -1,0 +1,31 @@
+<!-- Este modal lo traigo de bootswach y comento los primeros 3 div-->
+<!--<div class="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">-->
+        <div class="modal-header">
+          <h5 class="modal-title">Galería</h5>
+          <!-- activeModal se declara en el detalle.ts public porque lo coloque private y sale error 
+               este activeModal hace que se cierre el modal de la X-->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" 
+          (click)="activeModal.dismiss()">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+          <div *ngFor="let imagen of imagenes">
+            <div class="thumbnail text-center">
+              <img class="img-thumbnail img-rounded" src="{{imagen.imagenUrl}}">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- btn-block para ocupar todo el ancho y (click)="activeModal.dismiss() es para cerrar el modal -->
+          <button type="button" class="btn btn-outline-info btn-block" (click)="activeModal.dismiss()"
+          ><i class="fa-solid fa-window-close"></i> Cerrar</button>
+          <!-- Sacamos ese boton que sigue -->
+          <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+        </div>
+<!--   </div>
+    </div>
+  </div>-->

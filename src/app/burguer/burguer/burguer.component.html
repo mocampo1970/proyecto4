@@ -1,0 +1,29 @@
+<!-- este es como el app-component de la aplicación burguer porque como tenemos 
+     ocupado el app.component en la base de la aplicación or eso utilizamos este.
+     Este es como el base -->
+<div class="container-fluid h-100" id="appburguer">
+    <!-- Cabecera -->    
+    <div class="row">
+        <!--  en este siguiente estaba <div class="col-12 headerburguer"> pero tener ese headerurguer me
+              subia el titulo muy arriba se sobreponia al menu. -->
+        <div class="col-12">
+            <!-- Header -->
+            <app-headerburguer></app-headerburguer>
+        </div>
+    </div>
+    <!-- este content lo que hace es arreglar las imagenes en forma horizontal y vertical -->
+    <div class="row content">
+        <div class="col-12">
+            <!--<router-outlet></router-outlet>-->
+            <!-- No estaba este de abajo lo ingrese porque en el menu llama el list pero en el 
+                 del profesor esta es el router outlet-->
+            <app-list-categories></app-list-categories>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 footerburguer">
+            <!-- Footer -->
+            <app-footerburguer></app-footerburguer>            
+        </div>
+    </div>        
+</div>     

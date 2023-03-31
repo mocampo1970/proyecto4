@@ -1,0 +1,138 @@
+<!-- NgClass permite configurar la clase CSS dinámicamente para un elemento-->
+<!-- vamos a trabajar aqui con formularios reactivos, o sea no con ngModel -->
+<div class="row" id="add-booking">
+
+    <div class="col-12">
+        <!-- Ingresa el header aqui para que se vean los 2 botones -->
+        <app-header></app-header>
+        
+        <!-- Formulario reactivo aqui coloco el formGoup para saber que el ts hacer relación a este 
+             formulario reactivo y llamo el metodo addBooking() que esta en add-booking.component.ts 
+             y ese metodo me llama el addBooking del booking.service -->
+        <form [formGroup]="formBooking" (ngSubmit)="addBooking()">
+  
+            <!-- Nombre del usuario que hace la reserva -->
+            <!-- A cada campo en este caso name se le coloca el formControlName con el atributo
+                 name. Antes del fromControlname teniamos la propiedad name=name 
+                 el NgClass permite configurar la clase CSS dinámicamente para un elemento-->            
+            <div class="row form-group">
+                <div class="col-12 mt-2">
+                    <label for="name">{{'label.name' | translate}}</label>
+                    <input type="text" formControlName="name" id="name" class="form-control">
+                    <!-- este Ngclass en los programas va despues del anterior formcontrol pero saca 
+                         error por eso esta comentariado -->
+                    <!--[ngClass]="{'is-valid': name.dirty && !name.invalid, 'is-invalid': name.dirty && name.invalid}"-->
+                    
+                    <div class="valid-feedback">
+                        <span>{{'label.success' | translate}}</span>
+                    </div>
+                    <div class="invalid-feedback">
+                        <!-- se comentarea porque saca error en la compilación. -->
+                        <!--<span *ngIf="name.errors?.required">{{'label.required' | translate}}</span>-->
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Fecha de la reserva (p-calendar de primeng) -->
+            <!-- A cada campo en este caso name se le coloca el formControlName con el atributo
+                 name. Antes del fromControlname teniamos la propiedad name=name -->  
+
+            <div class="row form-group">
+                <div class="col-12 mt-2">
+                    <label for="date">{{'label.date' | translate}}</label>
+
+                    <!-- Esto se trae todo de ngbootstrap alla esta la documentación
+                        stepMinute avanza de 30 min en 30 
+                        readonlyInput es que sea solo lectura
+                        inputSyleClass es para dentro tenga el estilo -->                    
+                        <div class="p-field p-col-12 p-md-4">
+                            <label for="time"></label>
+                            <p-calendar 
+                                [locale]="locale"
+                                dateFormat="dd/mm/yy" 
+                                [showTime]="true" 
+                                [stepMinute]="30" 
+                                id="date"
+                                formControlName="date"
+                                [readonlyInput]="true"
+                                inputStyleClass="form-control is-valid"
+                                [minDate]="today"
+                                [style]="{'width':'50%'}" 
+                                [inputStyle]="{'width':'50%'}">
+                            </p-calendar>
+                        </div>
+                </div>
+            </div>
+              
+    
+            <!-- Servicio de la reserva -->
+            <div class="row form-group">
+                <div class="col-12 mt-2">
+                    <label for="services"> {{'label.services' | translate}}</label>
+
+                    <!-- ListBox se hace con select aqui se quita la clase name porque la 
+                         vamos a tener en el ts es otra forma de trabajar que no sea ngModel y
+                         es con formControlName formularios reactivos -->
+                    <select class="custom-select is-valid" formControlName="service" id="services">
+
+                    <!-- Aqui recorre el arreglo que definimos en el add-booking.component.ts 
+                         Debe ir value y selected entre corchetes para que los tome y 
+                         Tiene que ir option entre llaves para que lo tome, adicional se hace el 
+                         selected first para que ponga por defecto el primero y el let es como definir la vble first  -->                        
+                    <option [selected]="first"  [value]="option" *ngFor="let option of options; let first=first">{{option | translate}}</option>
+        
+                    </select>
+                    
+                    <div class="valid-feedback">
+                        <span>{{'label.success' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Submit -->
+            <!-- Boton mientras el formulario sea invalid lo deshabilite, cuando el formulario sea
+                 valido lo habilite, por ser tipo submit y arriba con el ngsubmit -> que se utiliza para 
+                 procesar la entrada introducida por el usuario cuando se envía el formulario.
+                 debe ser de type submit para que
+                 haga algo si es otro type dentro de este button no hace nada. -->            
+            <div class="row form-group">
+                <div class="col-12">
+                    <button [disabled]="formBooking.invalid" type="submit" class="btn btn-block btn-primary">
+                    {{'label.add.booking' | translate}}
+                    </button>
+                </div>
+            </div>
+  
+        </form>
+    </div>
+</div>
+
+<!-- Templates para los modales, vamos a utilizar un ng-template que es una plantilla
+     este #modal_success es como el nombre del modal -->
+<!-- Templates para los modales -->
+<ng-template #modal_success let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">{{'label.success' | translate}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+      {{'label.add.success' | translate}}
+    </div>
+</ng-template>
+  
+  
+<!-- este es para controlar que no pueden existir mas de un booking o reserva a la misma
+     hora -->
+<ng-template #modal_exists let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">{{'label.error' | translate}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        {{'label.exists' | translate}}
+    </div>
+</ng-template>

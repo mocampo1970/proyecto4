@@ -1,0 +1,54 @@
+<!-- Lo vamos a llamar list-bookings y se pone visible si loadBookings = true -->
+<div class="row" id="list-bookings" *ngIf="loadBookings">
+    <div class="col-12">
+        <!-- Ingresa el header aqui para que en la vista/ventana list-bookings
+             aparezcan los 2 botones de login y logout -->
+        <app-header></app-header>
+
+        <div class="row">
+            <div class="col-12">
+                <h1>{{'label.list.bookings' | translate}}</h1>
+            </div>
+        </div>
+
+        <!-- Si hay bookings -->
+        <div class="row" *ngIf="listBookings.length > 0">
+            <!-- La misma vble que se utilice en el for o sea booking/item se debe utilizar -->
+            <div class="col-12" *ngFor="let item of listBookings">
+                <!--Se le coloca nombre porque se usa en el css-->
+                <div class="row booking">
+
+                    <!-- Fecha reserva -->
+                    <div class="col-sm-3 col-12">
+                        <span class="d-block text-secondary">{{'label.date' | translate}}</span>
+                        <span class="d-block">{{item.date | date: 'dd/MM/yyyy HH:mm'}}</span>
+                    </div>
+                    <!-- Servicio reserva -->
+                    <div class="col-sm-6 col-12">
+                        <span class="d-block text-secondary">{{'label.services' | translate}}</span>
+                        <span class="d-block">{{item.service | translate}}</span>
+                    </div>
+                    <!-- Nombre del que reservo -->
+                    <div class="col-sm-3 col-12">
+                        <span class="d-block text-secondary">{{'label.name' | translate}}</span>
+                        <span class="d-block">{{item.name}}</span>
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+        <div class="row" *ngIf="listBookings.length == 0">
+            <div class="col-12 text-center">
+                <span>{{'label.no.data' | translate}}</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Spinner solo se muestra si loadBookings = false con el signo ! antes de la vble es la negación -->
+<div class="h-100" *ngIf="!loadBookings">
+    <div class="spinner">
+        <img src="assets/img/spinner.gif" alt="">
+    </div>
+</div>

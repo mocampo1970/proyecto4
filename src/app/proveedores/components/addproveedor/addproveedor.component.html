@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12">
+        <div class="container">
+            <div class="card-body">
+                <h5 class="card-title">{{titulo}}</h5>
+                <!-- Se registran los datos del proveedor y se mapean con ngModel al
+                     model o sea la clase proveedor.ts -->
+                <form >
+
+                    <div class="form-group row">
+                        <label for="nombres" class="col-form-label col-sm-2">Identificación</label>
+                        <div class="col-sm-6">
+                            <!-- Vamos a mapear cada campo a la clase model Estudiante que esta
+                                 definida en el ts-->
+                            <input type="text" class="form-control" name="nombres" [(ngModel)]="proveedor.identificacion">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nombres" class="col-form-label col-sm-2">Nombres</label>
+                        <div class="col-sm-6">
+                            <!-- Vamos a mapear cada campo a la clase model Estudiante que esta
+                                 definida en el ts-->
+                            <input type="text" class="form-control" name="nombres" [(ngModel)]="proveedor.nombres">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="apellidos" class="col-form-label col-sm-2">Apellidos</label>
+                        <div class="col-sm-6">
+                            <!-- Vamos a mapear cada campo a la clase -->
+                            <input type="text" class="form-control" name="apellidos" [(ngModel)]="proveedor.apellidos">
+                        </div>
+                    </div>
+
+                    <!-- Le colocamos #imagenInputFile para identificarlo y adicional creamos un metodo onFileChange
+                                le pasamos como parametro un $event, ese imagenInputFile lo vamos a utilizar como
+                                viewChild, el type="file" es el que me abre el explorador de windows.-->
+                        <input type="file" class="form-control" id="imagen" #imagenInputFile (change)="onFileChange($event)"
+                        accept="image/png, image/jepg, image/gif">
+                    <label class="input-group-text" for="imagen">Elige una imagen..</label>
+                </form>
+
+            </div>         
+        </div>
+    </div>
+</div>
+
